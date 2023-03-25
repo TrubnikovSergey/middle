@@ -9,32 +9,39 @@
     <title>Lesson 10 task 1</title>
   </head>
   <body>
-    <div class="bg"></div>
-    <div class="container">
-      <div class="title"><h1>Weather sounds</h1></div>
-      <div class="weathers">
-        <div class="summer" data-image-url="../src/assets/summer-bg.jpg">
-          <img class="icon" src="../src/assets/icons/sun.svg" alt="summer" />
-        </div>
-        <div class="rainy" data-image-url="../src/assets/rainy-bg.jpg">
-          <img
-            class="icon"
-            src="../src/assets/icons/cloud-rain.svg"
-            alt="rainy"
-          />
-        </div>
-        <div class="winter" data-image-url="../src/assets/winter-bg.jpg">
-          <img
-            class="icon"
-            src="../src/assets/icons/cloud-snow.svg"
-            alt="winter"
-          />
+    <div class="bg">
+      <div class="wrapper">
+        <div class="container">
+          <div class="title"><h1>Weather sounds</h1></div>
+          <div class="weathers">
+            <div class="summer" data-image-url="../src/assets/summer-bg.jpg">
+              <img
+                class="icon"
+                src="../src/assets/icons/sun.svg"
+                alt="summer"
+              />
+            </div>
+            <div class="rainy" data-image-url="../src/assets/rainy-bg.jpg">
+              <img
+                class="icon"
+                src="../src/assets/icons/cloud-rain.svg"
+                alt="rainy"
+              />
+            </div>
+            <div class="winter" data-image-url="../src/assets/winter-bg.jpg">
+              <img
+                class="icon"
+                src="../src/assets/icons/cloud-snow.svg"
+                alt="winter"
+              />
+            </div>
+          </div>
+          <div class="volume">
+            <input type="range" min="0" max="100" value="50" />
+          </div>
+          <img class="pause" src="" alt="" />
         </div>
       </div>
-      <div class="volume">
-        <input type="range" min="0" max="100" value="50" />
-      </div>
-      <img class="pause" src="" alt="" />
     </div>
   </body>
 </html>
