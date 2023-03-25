@@ -1,0 +1,120 @@
+@font-face {
+	font-family: 'Roboto'; 
+	src: url('../fonts/Roboto-Regular.ttf') format('truetype'); 
+}
+
+*,*::after,*::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.bg{
+    background-image: url('../assets/summer-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom center;
+    min-height: 100vh;
+    filter: blur(5px);
+}
+
+.container{
+    z-index: 100;
+    max-width: 500px;
+    margin: 0 auto;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 80%;
+    text-align: center;
+    transform: translateX(-50%);
+}
+
+.title{
+    font-family: 'Roboto', serif;
+    font-size: 24px;
+    margin: 20px 0px;
+    color: #ee7235;
+    text-align: center;
+}
+
+
+.icon{
+    width: 40px;
+}
+
+.weathers{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.summer{
+    background-image: url('../assets/summer-bg.jpg');
+    background-size: 180%;
+
+    border:2px solid #bdbda3;    
+    height: 150px;
+    width: 150px;  
+
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pause{
+    height: 30px;
+    margin-top: 30px;
+}
+
+.rainy{
+    background-image: url('../assets/rainy-bg.jpg');
+    background-size: 180%;
+
+    border:2px solid #bdbda3;    
+    height: 150px;
+    width: 150px;  
+
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.winter{
+    background-image: url('../assets/winter-bg.jpg');
+    background-size: 180%;
+
+    border:2px solid #bdbda3;    
+    height: 150px;
+    width: 150px;  
+
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.summer:hover{
+    border:2px solid #ee7235; 
+    cursor: pointer;
+
+}
+.rainy:hover{
+    border:2px solid #ee7235; 
+    cursor: pointer;
+
+}
+.winter:hover{
+    border:2px solid #ee7235; 
+    cursor: pointer;
+
+}
+
+.volume{
+    margin-top: 40px;
+}
