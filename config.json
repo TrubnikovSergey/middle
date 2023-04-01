@@ -1,0 +1,6 @@
+{
+    "ICON_PAUSE" : "../src/assets/icons/pause.svg",
+    "sound_summer":"../src/assets/sounds/summer.mp3",
+    "sound_rain":"../src/assets/sounds/rain.mp3",
+    "sound_winter":"../src/assets/sounds/winter.mp3"
+}
