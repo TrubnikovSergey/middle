@@ -1,17 +1,27 @@
 // const ICON_PAUSE = "../src/assets/icons/pause.svg";
 import configJSON from "../config.json";
 
-function showIconPause(config) {
-  const pause = document.querySelector(".pause");
-
-  if (config.isPlay) {
-    pause.src = "";
-  } else {
-    pause.src = configJSON.ICON_PAUSE;
-  }
+interface Config {
+  track: string;
+  isPlay: boolean;
+  begin: number;
+  end: number;
+  current: number;
 }
 
-function calculateTimePlay(config, duration) {
+interface Duration {
+  durationSummer: number;
+  durationRain: number;
+  durationWinter: number;
+}
+
+function showIconPause(config: Config) {
+  const pause = document.querySelector(".pause") as HTMLImageElement;
+
+  pause.src = config.isPlay ? "" : configJSON.ICON_PAUSE;
+}
+
+function calculateTimePlay(config: Config, duration: Duration) {
   const { durationSummer, durationRain, durationWinter } = duration;
 
   config.current += (config.end - config.begin) / 1000;
@@ -33,10 +43,10 @@ function calculateTimePlay(config, duration) {
   }
 }
 
-export function setDuration(duration) {
-  const audio1 = new Audio(configJSON.sound_summer);
-  const audio2 = new Audio(configJSON.sound_rain);
-  const audio3 = new Audio(configJSON.sound_winter);
+export function setDuration(duration: Duration) {
+  const audio1: HTMLAudioElement = new Audio(configJSON.sound_summer);
+  const audio2: HTMLAudioElement = new Audio(configJSON.sound_rain);
+  const audio3: HTMLAudioElement = new Audio(configJSON.sound_winter);
   audio1.onloadedmetadata = () => {
     duration.durationSummer = audio1.duration;
   };
@@ -48,7 +58,13 @@ export function setDuration(duration) {
   };
 }
 
-export function setStopPlay(track, audio, config, duration, volumValue) {
+export function setStopPlay(
+  track: string,
+  audio: HTMLAudioElement,
+  config: Config,
+  duration: Duration,
+  volumValue: number
+) {
   audio.volume = volumValue / 100;
 
   if (config.track === track) {
@@ -75,13 +91,24 @@ export function setStopPlay(track, audio, config, duration, volumValue) {
 }
 
 export function getVariables() {
-  const summer = document.querySelector(".summer");
-  const rainy = document.querySelector(".rainy");
-  const winter = document.querySelector(".winter");
-  const volume = document.querySelector(".volume");
-  const bg = document.querySelector(".bg");
-  const duration = { durationSummer: 0, durationRain: 0, durationWinter: 0 };
-  const stopPlay = {
+  const summer = document.querySelector(".summer") as HTMLDivElement;
+  const rainy = document.querySelector(".rainy") as HTMLDivElement;
+  const winter = document.querySelector(".winter") as HTMLDivElement;
+  const volume = document.querySelector("#volumeInput") as HTMLInputElement;
+
+  const bg = document.querySelector(".bg") as HTMLDivElement;
+  const duration: {
+    durationSummer: number;
+    durationRain: number;
+    durationWinter: number;
+  } = { durationSummer: 0, durationRain: 0, durationWinter: 0 };
+  const stopPlay: {
+    track: string;
+    isPlay: boolean;
+    begin: number;
+    end: number;
+    current: number;
+  } = {
     track: "",
     isPlay: true,
     begin: 0,
@@ -91,7 +118,7 @@ export function getVariables() {
   return { summer, rainy, winter, volume, bg, duration, stopPlay };
 }
 
-export function setBGImage(item, bg) {
-  const button = item.closest("div");
+export function setBGImage(item: GlobalEventHandlers, bg: HTMLDivElement) {
+  const button = (<HTMLElement>item).closest("div") as HTMLDivElement;
   bg.style.backgroundImage = `url(${button.dataset.imageUrl})`;
 }

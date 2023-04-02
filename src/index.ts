@@ -7,14 +7,15 @@ const { summer, rainy, winter, volume, bg, duration, stopPlay } =
 summer.onclick = summerHandlerClick;
 rainy.onclick = rainyHandlerClick;
 winter.onclick = winterHandlerClick;
+
 volume.oninput = handlerChangeVolume;
 setDuration(duration);
 
-const audio = new Audio();
+const audio: HTMLAudioElement = new Audio();
 audio.onended = handlerOnEndedPlay;
-let volumValue = 50;
+let volumValue: number = 50;
 
-export function handlerOnEndedPlay() {
+export function handlerOnEndedPlay(): void {
   stopPlay.track = "";
   stopPlay.isPlay = true;
   stopPlay.begin = 0;
@@ -22,23 +23,24 @@ export function handlerOnEndedPlay() {
   stopPlay.current = 0;
 }
 
-function summerHandlerClick({ target }) {
-  setBGImage(target, bg);
+function summerHandlerClick(this: GlobalEventHandlers, e: Event): any {
+  setBGImage(this, bg);
   audio.src = configJSON.sound_summer;
   setStopPlay("summer", audio, stopPlay, duration, volumValue);
 }
-function rainyHandlerClick({ target }) {
-  setBGImage(target, bg);
+
+function rainyHandlerClick(this: GlobalEventHandlers, e: Event): any {
+  setBGImage(this, bg);
   audio.src = configJSON.sound_rain;
   setStopPlay("rain", audio, stopPlay, duration, volumValue);
 }
-function winterHandlerClick({ target }) {
-  setBGImage(target, bg);
+function winterHandlerClick(this: GlobalEventHandlers, e: Event): any {
+  setBGImage(this, bg);
   audio.src = configJSON.sound_winter;
   setStopPlay("winter", audio, stopPlay, duration, volumValue);
 }
 
-function handlerChangeVolume({ target }) {
-  volumValue = target.value;
+function handlerChangeVolume(this: GlobalEventHandlers, e: Event): any {
+  volumValue = Number((this as HTMLInputElement).value);
   audio.volume = volumValue / 100;
 }
