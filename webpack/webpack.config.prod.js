@@ -8,6 +8,6 @@ module.exports = merge(configCommon, {
   mode: "production",
   devtool: "source-map",
   optimization: {
-    minimizer: [`...`, new CssMinimizerPlugin()],
-  },
+    minimizer: [`...`, new CssMinimizerPlugin()]
+  }
 });
