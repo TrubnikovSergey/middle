@@ -19,7 +19,7 @@ getData(COMMENTS_URL)
   .then((data) => {
     for (let i = 0; i < data.length; i++) {
       const { id, email } = data[i];
-      console.log(`ID:${id}, Email:${email}`);
+      console.log(`ID: ${id}, Email: ${email}`);
     }
   });
 
