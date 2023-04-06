@@ -1,13 +1,5 @@
 import { posts } from "./mockData";
-import { Post } from "./interfaces";
-
-interface ById {
-  [key: string]: Post;
-}
-interface Normalize {
-  byId: ById;
-  allIds: string[];
-}
+import { Post, ById, Normalize } from "./interfaces";
 
 const normalizeData = (unnormalizedData: Post[]): Normalize => {
   const byId: ById = unnormalizedData.reduce((acc, item) => ({ ...acc, [item.id]: item }), {});
