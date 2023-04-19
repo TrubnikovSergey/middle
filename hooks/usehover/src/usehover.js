@@ -6,14 +6,22 @@ const useHover = () => {
   const ref = useRef();
   const [hovered, setHovered] = useState();
 
+  function mouseOver() {
+    setHovered(true);
+  }
+  function mouseOut() {
+    setHovered(false);
+  }
+
   useEffect(() => {
     if (ref.current) {
-      ref.current.addEventListener("mouseover", () => {
-        setHovered(true);
-      });
-      ref.current.addEventListener("mouseout", () => {
-        setHovered(false);
-      });
+      ref.current.addEventListener("mouseover", mouseOver);
+      ref.current.addEventListener("mouseout", mouseOut);
+
+      return () => {
+        ref.current.removeEventListener("mouseover", mouseOver);
+        ref.current.removeEventListener("mouseout", mouseOut);
+      };
     }
   }, [ref]);
 
