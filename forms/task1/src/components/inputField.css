@@ -1,0 +1,39 @@
+.labelRadio{
+    margin-right: 10px;
+}
+
+.label{
+    margin-bottom:2px ;
+}
+
+.inputRadio{
+    margin-right: 5px;
+}
+
+.inputFieldWrapper{
+    margin: 2px 0px 15px;    
+}
+
+.inputWrapper{
+    border:1px solid #CCC;
+    border-radius: 5px;
+    display: flex;
+    background: #fff;
+}
+
+.input{
+    border-radius: 5px;
+    padding:3px 5px;
+    outline:none;
+    border: none;
+    font-size: 20px;
+    color:#757575
+    
+}
+
+
+.description{
+    color: rgb(144, 144, 144);
+    font-size: 10px;
+    margin: 2px 0px;
+}
