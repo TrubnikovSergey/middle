@@ -1,0 +1,12 @@
+.navPanel{
+    display: flex;
+    list-style:none;
+    margin: 20px 0px 20px;
+    padding: 10px 55px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.navPanel li + li{
+    margin-left: 10px;
+}
