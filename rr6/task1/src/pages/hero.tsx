@@ -1,47 +1,59 @@
-import сategoryList from "../assets/location.json";
-import { Link, useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import heroesJSON from "../assets/characters.json";
+import "./hero.css";
 
-interface CategoryProps {
+interface HeroesItem {
   id: number;
   name: string;
-  dimension: string;
+  status: string;
+  species: string;
   type: string;
+  gender: string;
+  image: string;
   created: string;
 }
 
-const Category = () => {
+const Hero = () => {
   const { id } = useParams();
-  const [data, setData] = useState<CategoryProps | CategoryProps[] | null>(null);
+  const [data, setData] = useState<HeroesItem | HeroesItem[] | null>(null);
 
   useEffect(() => {
     if (id) {
-      const findCategory = сategoryList.find((item) => item.id === Number(id));
-
-      if (findCategory) {
-        setData(findCategory);
+      const findHero = heroesJSON.find((item) => item.id === Number(id));
+      if (findHero) {
+        setData(findHero);
       }
     } else {
-      setData(сategoryList);
+      setData(heroesJSON);
     }
   }, [id]);
 
-  let renderJSX: React.JSX.Element | null = null;
+  let renderJSX: JSX.Element | null = null;
 
   if (id) {
     if (data && !Array.isArray(data)) {
       renderJSX = (
         <div className="wrapperCard">
+          <div className="containerImage">
+            <img className="image" src={data.image} alt="face" />
+          </div>
           <div className="containerInfo">
             <div className="info">
               <li className="liInfo">
                 Имя: <span className="valueProps">{data.name}</span>
               </li>
               <li className="liInfo">
-                Измерение: <span className="valueProps">{data.dimension}</span>
+                Статус: <span className="valueProps">{data.status}</span>
+              </li>
+              <li className="liInfo">
+                Разновидность: <span className="valueProps">{data.species}</span>
               </li>
               <li className="liInfo">
                 Тип: <span className="valueProps">{data.type}</span>
+              </li>
+              <li className="liInfo">
+                Пол: <span className="valueProps">{data.gender}</span>
               </li>
               <li className="liInfo">
                 Создан: <span className="valueProps">{new Date(data.created).toLocaleString()}</span>
@@ -56,7 +68,7 @@ const Category = () => {
       renderJSX = (
         <>
           {data.map((item) => (
-            <Link to={`/category/${item.id}`} key={item.id}>
+            <Link to={`/hero/${item.id}`} key={item.id}>
               {item.name}
             </Link>
           ))}
@@ -68,10 +80,4 @@ const Category = () => {
   return renderJSX;
 };
 
-export default Category;
-
-// const Category = () => {
-//   return <h1>Category</h1>;
-// };
-
-// export default Category;
+export default Hero;

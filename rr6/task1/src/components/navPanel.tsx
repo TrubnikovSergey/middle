@@ -5,7 +5,7 @@ const NavPanel = () => {
   return (
     <ul className="navPanel">
       <li>
-        <NavLink to="/">Герои</NavLink>
+        <NavLink to="/hero">Герои</NavLink>
       </li>
       <li>
         <NavLink to="/category">Локации</NavLink>
