@@ -1,4 +1,5 @@
-import { posts } from "./mockData";
+import posts from "./mockData.json";
+
 import { Post, ById, Normalize } from "./interfaces";
 
 const normalizeData = (unnormalizedData: Post[]): Normalize => {
