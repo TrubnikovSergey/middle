@@ -1,0 +1,24 @@
+
+.containerImage{
+    border: 1px solid;
+    height: 120px;
+    width: 120px;
+}
+
+.image{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.containerInfo{
+    flex: 3;
+}
+
+.liInfo{
+    list-style: none;
+}
+
+.valueProps{
+    color: rgb(105, 105, 105);
+}
