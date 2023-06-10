@@ -7,6 +7,7 @@ import Login from "./pages/login";
 import AuthProvider from "./components/authProvider";
 import Logout from "./pages/logout";
 import PrivateRoute from "./components/privateRoute";
+import ErrorBoundary from "./components/errorBaundary";
 
 const Hero = lazy(() => import("./pages/hero"));
 const Category = lazy(() => import("./pages/category"));
@@ -24,7 +25,9 @@ function App() {
                 element={
                   <PrivateRoute>
                     <Suspense fallback={`Loading...`}>
-                      <Hero />
+                      <ErrorBoundary source="Hero">
+                        <Hero />
+                      </ErrorBoundary>
                     </Suspense>
                   </PrivateRoute>
                 }
@@ -34,7 +37,9 @@ function App() {
                 element={
                   <PrivateRoute>
                     <Suspense fallback={`Loading...`}>
-                      <Category />
+                      <ErrorBoundary source="Category">
+                        <Category />
+                      </ErrorBoundary>
                     </Suspense>
                   </PrivateRoute>
                 }
@@ -44,7 +49,9 @@ function App() {
                 element={
                   <PrivateRoute>
                     <Suspense fallback={`Loading...`}>
-                      <Episode />
+                      <ErrorBoundary source="Episode">
+                        <Episode />
+                      </ErrorBoundary>
                     </Suspense>
                   </PrivateRoute>
                 }
