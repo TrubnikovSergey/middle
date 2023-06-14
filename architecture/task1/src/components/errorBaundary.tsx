@@ -23,14 +23,21 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     this.setState({ ...this.state, source: this.props.source });
-    console.log("componentDidCatch", { error, errorInfo });
   }
 
   render() {
-    console.log("--------------------ERRORBoundary", this.state);
+    if (this.state.hasError) {
+      console.log("-----ERRORBoundary-----\n", this.state);
+    }
 
-    if (this.state.hasError && this.props.source === this.state.source) {
-      return <h1>Что-то пошло не так</h1>;
+    if (this.state.hasError) {
+      if (this.state.source) {
+        if (this.props.source === this.state.source) {
+          return <h1>Что-то пошло не так</h1>;
+        }
+      } else {
+        return <h1>Что-то пошло не так</h1>;
+      }
     }
 
     return this.props.children;
