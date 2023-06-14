@@ -1,0 +1,13 @@
+.wrapper{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+.container{
+    border: 1px solid #ccc;
+    background:rgb(175, 210, 255);
+    border-radius: 5px;
+    padding: 10px;
+}

@@ -1,0 +1,10 @@
+.battonWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonField{
+    padding: 5px;
+    font-size: 18px;
+}
