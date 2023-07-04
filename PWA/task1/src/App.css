@@ -1,0 +1,99 @@
+.App {
+  text-align: center;
+}
+
+.hello{
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(119, 119, 119);
+}
+
+.active{
+  color: chocolate;
+}
+
+.wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  margin-top: 50px;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  width: 500px;
+}
+
+li{
+  list-style: none;
+}
+
+.wrapperCard{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+  margin: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 5px #383638;
+}
+
+.wrapperCardWithoutAll{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
