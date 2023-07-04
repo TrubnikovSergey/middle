@@ -23,9 +23,13 @@ const Category = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
   const { loading, error, respons } = useGetNextPage("https://rickandmortyapi.com/api/location", page);
+  const isArrayWithLength = typeof respons?.data === "object" && respons?.data.results.length > 0;
+  const is404 = !isArrayWithLength && respons?.request?.responseURL?.includes("offline.html");
+  console.log("---------Category", respons);
+  // console.log("+++++++++++++++++\n", !isArrayWithLength, respons?.request.responseURL.includes("offline.html"));
 
   useEffect(() => {
-    if (respons && respons?.data.results.length > 0) {
+    if (respons && isArrayWithLength) {
       setDataList((prev) => [
         ...new Set([
           ...prev,
@@ -40,16 +44,6 @@ const Category = () => {
     }
   }, [respons]);
 
-  // useEffect(() => {
-  //   if (id) {
-  //     const findCategory = dataList.find((item) => item.id === Number(id));
-
-  //     if (findCategory) {
-  //       setData(findCategory);
-  //     }
-  //   }
-  // }, [id]);
-
   const lastNode = useCallback(
     (node: HTMLAnchorElement) => {
       if (observer.current) {
@@ -58,7 +52,7 @@ const Category = () => {
 
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          if (page < respons?.data.info.pages) {
+          if (respons?.data?.info?.pages && page < respons.data.info.pages) {
             setPage((prev) => prev + 1);
           }
         }
@@ -73,32 +67,6 @@ const Category = () => {
 
   let renderJSX: React.JSX.Element | null = null;
 
-  // if (id) {
-  //   if (data) {
-  //     renderJSX = (
-  //       <Modal opened={opened} onClose={close} withCloseButton={false} size={500}>
-  //         <Card withoutWrapp={true}>
-  //           <div className="containerInfo">
-  //             <div className="info">
-  //               <li className="liInfo">
-  //                 Имя: <span className="valueProps">{data.name}</span>
-  //               </li>
-  //               <li className="liInfo">
-  //                 Измерение: <span className="valueProps">{data.dimension}</span>
-  //               </li>
-  //               <li className="liInfo">
-  //                 Тип: <span className="valueProps">{data.type}</span>
-  //               </li>
-  //               <li className="liInfo">
-  //                 Создан: <span className="valueProps">{new Date(data.created).toLocaleString()}</span>
-  //               </li>
-  //             </div>
-  //           </div>
-  //         </Card>
-  //       </Modal>
-  //     );
-  //   }
-  // } else {
   if (dataList) {
     const category = dataList.find((item) => item.id === Number(id));
 
@@ -140,6 +108,8 @@ const Category = () => {
             </Link>
           );
         })}
+        {loading && <h1>...Loading...</h1>}
+        {is404 && <h1>404 Not Found</h1>}
       </>
     );
     // }

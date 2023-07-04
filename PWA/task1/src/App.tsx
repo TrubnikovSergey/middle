@@ -13,6 +13,13 @@ const Hero = lazy(() => import("./pages/hero"));
 const Category = lazy(() => import("./pages/category"));
 const Episode = lazy(() => import("./pages/episode"));
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/sw.js")
+    .then((reg) => console.log("Service Worker registered", reg))
+    .catch((err) => console.log("Service Worker not registered", err));
+}
+
 function App() {
   return (
     <div className="wrapper">
@@ -25,9 +32,9 @@ function App() {
                 element={
                   <PrivateRoute>
                     <Suspense fallback={`Loading...`}>
-                      <ErrorBoundary source="Hero">
+                      {/* <ErrorBoundary source="Hero"> */}
                         <Hero />
-                      </ErrorBoundary>
+                      {/* </ErrorBoundary> */}
                     </Suspense>
                   </PrivateRoute>
                 }
@@ -37,9 +44,9 @@ function App() {
                 element={
                   <PrivateRoute>
                     <Suspense fallback={`Loading...`}>
-                      <ErrorBoundary source="Category">
+                      {/* <ErrorBoundary source="Category"> */}
                         <Category />
-                      </ErrorBoundary>
+                      {/* </ErrorBoundary> */}
                     </Suspense>
                   </PrivateRoute>
                 }
@@ -49,9 +56,9 @@ function App() {
                 element={
                   <PrivateRoute>
                     <Suspense fallback={`Loading...`}>
-                      <ErrorBoundary source="Episode">
+                      {/* <ErrorBoundary source="Episode"> */}
                         <Episode />
-                      </ErrorBoundary>
+                      {/* </ErrorBoundary> */}
                     </Suspense>
                   </PrivateRoute>
                 }

@@ -27,9 +27,11 @@ const Hero = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
   const { loading, error, respons } = useGetNextPage("https://rickandmortyapi.com/api/character", page);
+  const isArrayWithLength = typeof respons?.data === "object" && respons?.data.results.length > 0;
+  const is404 = !isArrayWithLength && respons?.request?.responseURL?.includes("offline.html");
 
   useEffect(() => {
-    if (respons && respons?.data.results.length > 0) {
+    if (respons && isArrayWithLength) {
       setHeroList((prev) => {
         return [
           ...new Set([
@@ -45,7 +47,7 @@ const Hero = () => {
       });
     }
   }, [respons]);
-  throw new Error("test");
+
   const lastNode = useCallback(
     (node: HTMLAnchorElement) => {
       if (observer.current) {
@@ -54,7 +56,7 @@ const Hero = () => {
 
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          if (page < respons?.data.info.pages) {
+          if (respons?.data?.info?.pages && page < respons.data.info.pages) {
             setPage((prev) => prev + 1);
           }
         }
@@ -121,6 +123,7 @@ const Hero = () => {
           );
         })}
         {loading && <h1>...Loading...</h1>}
+        {is404 && <h1>404 Not Found</h1>}
       </>
     );
   }
