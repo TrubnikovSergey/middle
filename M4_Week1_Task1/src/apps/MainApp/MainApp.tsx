@@ -10,7 +10,6 @@ import { GroupContactsDto } from "src/types/dto/GroupContactsDto";
 import { DATA_CONTACT, DATA_GROUP_CONTACT } from "src/__data__";
 import { useAppDispatch, useAppSelector } from "src/store/hooks";
 import { createSETContactsListAction } from "src/types/actions";
-import { store } from "src/store/store";
 
 export const MainApp = () => {
   return (
