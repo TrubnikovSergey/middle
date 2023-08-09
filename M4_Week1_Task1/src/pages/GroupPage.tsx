@@ -8,20 +8,26 @@ import { GroupContactsCard } from "src/components/GroupContactsCard";
 import { Empty } from "src/components/Empty";
 import { ContactCard } from "src/components/ContactCard";
 import { useAppSelector } from "src/store/hooks";
+import { useGetGrooupContactsListQuery } from "src/store/slices/groupContactsSlice";
+import { useGetContactsListQuery } from "src/store/slices/contactsSlice";
 
 export const GroupPage = () => {
   const { groupId } = useParams<{ groupId: string }>();
   const [contacts, setContacts] = useState<ContactDto[]>([]);
   const [groupContacts, setGroupContacts] = useState<GroupContactsDto>();
-  const groupContactsState = useAppSelector((state) => state.groupContactsState);
-  const contactsState = useAppSelector((state) => state.contactState);
+  // const groupContactsState = useAppSelector((state) => state.groupContactsState);
+  // const contactsState = useAppSelector((state) => state.contactState);
+  const { data: groupContactsState } = useGetGrooupContactsListQuery();
+  const { data: contactsState } = useGetContactsListQuery();
 
   useEffect(() => {
-    const findGroup = groupContactsState.find(({ id }) => id === groupId);
+    const findGroup = groupContactsState?.find(({ id }) => id === groupId);
     setGroupContacts(findGroup);
     setContacts(() => {
-      if (findGroup) {
-        return contactsState.filter(({ id }) => findGroup.contactIds.includes(id));
+      if (contactsState) {
+        if (findGroup) {
+          return contactsState.filter(({ id }) => findGroup.contactIds.includes(id));
+        }
       }
       return [];
     });

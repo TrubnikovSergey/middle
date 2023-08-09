@@ -1,15 +1,15 @@
-import React, { memo } from "react";
-import { CommonPageProps } from "./types";
+import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { GroupContactsCard } from "src/components/GroupContactsCard";
-import { useAppSelector } from "src/store/hooks";
+import { useGetGrooupContactsListQuery } from "src/store/slices/groupContactsSlice";
 
 export const GroupListPage = () => {
-  const groupContactsState = useAppSelector((state) => state.groupContactsState);
+  // const groupContactsState = useAppSelector((state) => state.groupContactsState);
+  const { data: groupContactsState } = useGetGrooupContactsListQuery();
 
   return (
     <Row xxl={4}>
-      {groupContactsState.map((groupContacts) => (
+      {groupContactsState?.map((groupContacts) => (
         <Col key={groupContacts.id}>
           <GroupContactsCard groupContacts={groupContacts} withLink />
         </Col>

@@ -6,14 +6,16 @@ import { ContactDto } from "src/types/dto/ContactDto";
 import { ContactCard } from "src/components/ContactCard";
 import { Empty } from "src/components/Empty";
 import { useAppSelector } from "src/store/hooks";
+import { useGetContactsListQuery } from "src/store/slices/contactsSlice";
 
 export const ContactPage: FC = () => {
   const { contactId } = useParams<{ contactId: string }>();
   const [contact, setContact] = useState<ContactDto>();
-  const contactsState = useAppSelector((state) => state.contactState);
+  // const contactsState = useAppSelector((state) => state.contactState);
+  const { data: contactsState } = useGetContactsListQuery();
 
   useEffect(() => {
-    setContact(() => contactsState.find(({ id }) => id === contactId));
+    setContact(() => contactsState?.find(({ id }) => id === contactId));
   }, [contactId]);
 
   return (
