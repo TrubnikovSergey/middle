@@ -4,15 +4,21 @@ import { Col, Row } from "react-bootstrap";
 import { ContactCard } from "src/components/ContactCard";
 import { ContactDto } from "src/types/dto/ContactDto";
 import { useAppSelector } from "src/store/hooks";
+import { useGetContactsListQuery } from "src/store/slices/contactsSlice";
 
 export const FavoritListPage: FC = () => {
   const [contacts, setContacts] = useState<ContactDto[]>([]);
-  const contactsState = useAppSelector((state) => state.contactState);
-  const favoriteContactsState = useAppSelector((state) => state.favoriteContactsState);
+  // const contactsState = useAppSelector((state) => state.contactState);
+  const { data: contactsState } = useGetContactsListQuery();
+  const favoriteList = useAppSelector((state) => {
+    return state.favoriteContactsState.entities;
+  });
 
   useEffect(() => {
-    setContacts(() => contactsState.filter(({ id }) => favoriteContactsState.includes(id)));
-  }, [contactsState, favoriteContactsState]);
+    if (contactsState) {
+      setContacts(() => contactsState.filter(({ id }) => favoriteList.includes(id)));
+    }
+  }, [contactsState, favoriteList]);
   return (
     <Row xxl={4} className="g-4">
       {contacts.map((contact) => (
